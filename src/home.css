@@ -1,0 +1,56 @@
+.list {
+    display: flex;
+}
+
+.order {
+
+    height: 150px;
+    width: 150px;
+
+    border: 2px solid black;
+    box-shadow: -1px 3px 3px 3px;
+    margin-left: 25px;
+    border-radius: 5px;
+
+    text-align: center;
+    text-shadow: 25px;
+
+}
+
+.order:hover {
+    height: 155px;
+    width: 155px;
+}
+
+.order::before {
+    color: bisque;
+}
+
+.order:active {
+    color: rgb(22, 225, 73);
+    height: 140px;
+    width: 140px;
+
+
+}
+
+.mycss {
+    height: auto;
+    width: auto;
+    box-sizing: border-box;
+    border: 2px solid black;
+
+    box-shadow: 2px 2px 2px rgb(148, 133, 133);
+    border-radius: 5px;
+}
+
+@media only screen and (max-width:500px) {
+    .list {
+        display: grid;
+        justify-content: space-around;
+    }
+
+    .order {
+        margin-top: 20px;
+    }
+}

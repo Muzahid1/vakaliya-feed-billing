@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+li {
+    float : left;
+    margin :5px;
+    list-style: none;
+}
+.navbar {
+    color: rgb(33, 11, 38);
+    border: solid white;
+    box-shadow: 2px 2px 2px rgb(214, 207, 207);
+    height: 40px;
+    width: auto;
+}
+.nav1{
+    margin-left: 20px;
+    margin-top: 10px;
+}
+#results {
+    height: 130px;
+    width: 182px;
+    border: solid rgb(230, 218, 218);
+    box-shadow: 2px 2px 2px beige;
+    border-radius: 5px;
+    margin: 15px;
+}
+.transfer{
+    margin:7px;
+}
