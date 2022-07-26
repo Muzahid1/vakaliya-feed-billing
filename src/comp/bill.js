@@ -26,13 +26,18 @@ const Contact = () => {
   const [total, settotal] = useState(`${price*Quentity-shipping}`);
   const [dbdata, setdbdata] = useState();
   const [date, setDate] = useState(``);
+  const [dbdata1, setdbdata1] = useState()
+  const [stoke, setstoke] = useState([])
 
 
   const componentRef = useRef();
-  const handlePrint = useReactToPrint({
+  const handlePrint =  useReactToPrint({
     content: () => componentRef.current,
-    dbinsert
-  });
+  
+ 
+   
+  }
+  );
 
 
   //const history = useNavigate();
@@ -44,12 +49,15 @@ const Contact = () => {
   },[])
   // }
   useEffect(()=>{
-
-  })
+    axios.post(`http://localhost:3001/iteams/${iteam}`).then((result1)=>{
+      setstoke(  result1.data  )
+    })
+    
+  }, [])
 
   function app() {
     // console.log(data1);
-
+    
    const apps = axios.post(`http://localhost:3001/suser/${data1}`).then((result1) => {
       setData2(result1.data)
      
@@ -57,13 +65,17 @@ const Contact = () => {
     });
 
   };
-  function user1() {
-    // user()
-    app()
-  }
-  function dbinsert () {
   
-  axios.post("http://localhost:3001/invoice", {
+  // if (Quentity <= stoke[0]?.quentity){
+        
+  // }else {alert(iteam + " is out of stoke")}
+   
+
+  function dbinsert1 (){
+    if (Quentity <= stoke[0].quentity){
+    {
+  
+    axios.post("http://localhost:3001/invoice", {
     name : data2[0].name,
     iteam,
     price,
@@ -81,8 +93,18 @@ const Contact = () => {
       date,
       shipping
    } ])
+  })}
 
-  })
+}else{alert(iteam +" out of stoke")}
+  
+
+  axios.put("http://localhost:3001/acleader", {
+   name : "name"
+  }).then(()=>{
+    setdbdata1([dbdata1, {
+    name : data2[0].name
+  }])
+})
 }
 
 
@@ -97,14 +119,23 @@ const Contact = () => {
 //     //  document.body.innerHTML = backup;
 // dbinsert()
 //   }
+  function handlePrint1 (){
+    handlePrint()
+    dbinsert1()
+  }
   
-console.log(data2);
+//  stoke.map(stoke=>{
+//   var iteam1 = iteam == stoke[iteam].iteam
+//   console.log(iteam1.quentity)
+// });
+console.log(stoke[0]?.quentity)
+
   return (
 
     <div id="root1">
       <>
         <Backbutton />
-        <center> <select onClick={user1} onChange={(e) => setData1(e.target.value)}>{data.map((data,index) => {
+        <center> <select onClick={app} onChange={(e) => setData1(e.target.value)}>{data.map((data,index) => {
           return (
             <>
 
@@ -237,8 +268,8 @@ console.log(data2);
 
 
         </div>
-        <center> <button onClick={handlePrint} > save and print</button></center>
-        <center> <button onClick={dbinsert} > save </button></center>
+        <center> <button onClick={handlePrint1} > save and print</button></center>
+        <center> <button onClick={dbinsert1} > save </button></center>
         {/* <center> <button onClick={data22} > load </button></center> */}
 
 

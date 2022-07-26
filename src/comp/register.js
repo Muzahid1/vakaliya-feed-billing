@@ -101,7 +101,7 @@ function Register() {
 
 
             <div className="form-group">
-              <label className="control-label col-sm-2" htmlFor="email">position:</label>
+              <label className="control-label col-sm-2" htmlFor="email">farm name:</label>
               <div className="col-sm-10">
                 <input onChange={(e) => { setPosition(e.target.value) }} name="position" type="text" id="form3Examplev4" className="form-control form-control-lg" />
 
@@ -185,47 +185,13 @@ function Register() {
 
               </div>
 
-              <div className="form-group">
-                <select onClick={(e) => { setFarm(e.target.value) }} className="select">
-                  <option  >select farm type</option>
-                  <option  >poultry farm</option>
-                  <option  >boiler farm</option>
-                  <option  >feed meel</option>
-                  <option  >home farm</option>
-                </select>
-              </div>
+             
 
-              <div className="col-md-6">
-
-                <select onClick={(e) => { setEmploy(e.target.value) }} className="select">
-                  <option  >Employees</option>
-                  <option  >Two</option>
-                  <option  >Three</option>
-                  <option  >Four</option>
-                </select>
-
-              </div>
-              <div className="mb-4 pb-2">
-                <select onClick={(e) => { setCapacity(e.target.value) }} className="select">
-                  <option >capacity</option>
-                  <option  >2000-5000</option>
-                  <option  >5000-10000</option>
-                  <option  >10000-20000</option>
-                  <option  >above 20000</option>
-                </select>
-              </div>
-
-
+            
 
             </div>
 
-            <div className="form-group">
-              <div className="col-sm-offset-2 col-sm-10">
-                <div className="checkbox">
-                  <label><input type="checkbox" name="remember" /> i have accept terms and condition</label>
-                </div>
-              </div>
-            </div>
+          
             <div className="form-group">
               <div className="col-sm-offset-2 col-sm-10">
                 <button onClick={Handledata} type="submit" className="btn btn-default">Submit</button>

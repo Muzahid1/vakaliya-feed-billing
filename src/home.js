@@ -26,6 +26,12 @@ export default function Home ()  {
      <Link to="acleader">
      <div className="order">
       ac leader
+      <img src={require('./img/acleader.jpg')} height={130} width={130}/>
+     </div></Link>
+     <Link to='stoke'>
+     <div className="order">
+      stoke
+      <img src={require('./img/stoke.jpg')} height={130} width={130}/>
      </div></Link>
      </div>
     <Sidebar/>

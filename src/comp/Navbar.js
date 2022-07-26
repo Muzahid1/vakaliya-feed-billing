@@ -39,7 +39,7 @@ import './comp.css'
          
          <li > <Link to="/Contact" >bill</Link></li>
        <li> <Link to="/register" > registration</Link></li>
-        <li><Link to="/about">about</Link> </li>
+       <li><Link to="/about">about</Link> </li>
        
        <li  className="nav navbar-nav navbar-right"> <Link to="/login"  onClick={Login}> <span className="glyphicon glyphicon-log-in"></span> Logout</Link></li>
 
@@ -47,9 +47,10 @@ import './comp.css'
       
        :
       <ul className="nav navbar-nav navbar-right">
-       <li> <Link to="/login"><span className="glyphicon glyphicon-user"></span> Sign Up</Link></li>
+       {/* <li> <Link to="/login"><span className="glyphicon glyphicon-user"></span> Sign Up</Link></li> */}
+       <li><Link to="/about">about</Link> </li>
        <li  onClick={Login}> <Link to="/login"> <span className="glyphicon glyphicon-log-in"></span> Login</Link></li>
-    
+       
       </ul> }
     </div> 
   </div>

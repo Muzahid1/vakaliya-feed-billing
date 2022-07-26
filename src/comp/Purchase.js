@@ -55,13 +55,21 @@ function addproduct(){
 const addproduct1 = ()=>{
  axios.post("http://localhost:3001/iteam", {
     iteam,
- }).then(()=>{
-     setiteam1([iteam1])
+ }).then((result)=>{
+     setiteam1([iteam1]);
+     if (result){
+        
+        alert("iteam already exist")
     
+}
+
  })
+ 
+   
+ 
 }
 useEffect(()=>{
-axios.get("http://localhost:3001/iteams").then((result)=>{
+axios.post("http://localhost:3001/iteams").then((result)=>{
     setdata2(result.data);
 })
 }, [])

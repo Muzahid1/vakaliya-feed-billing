@@ -64,7 +64,7 @@ table{
 }
 table, th, td {
  
-  border:1px solid black;
+  border:0.5px solid black;
 }
 .bill {
   margin-left: 10px;
@@ -96,4 +96,27 @@ table, th, td {
 
 .product {
   margin-bottom: 25px;
+}
+
+.login {
+  height: 175px;
+  width: 205px;
+  margin-top: 60px;
+  border: 5px rgb(142, 235, 173);
+  box-shadow: -1px 1px 2px 3px rgb(175, 148, 202);
+  border-radius: 5px;
+  justify-content: center;
+  margin-bottom: 150px;
+}
+
+.login label {
+  margin-top: 10PX;
+}
+
+.actable {
+  height: auto;
+  width: 70%;
+}
+.actable table tr th1 {
+ width: 2px;
 }

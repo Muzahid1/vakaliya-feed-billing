@@ -1,5 +1,5 @@
 {
-  "name": "singlepageapp",
+  "name": "vakaliyafeed",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,6 +12,7 @@
     "mongodb": "^4.6.0",
     "mongoose": "^6.3.3",
     "mysql": "^2.18.1",
+    "nodemon": "^2.0.19",
     "os-browserify": "^0.3.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",

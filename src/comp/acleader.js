@@ -25,9 +25,11 @@ const srno = [0]
   return (
    <>
    <Backbutton/>
-   <div>
+   <center>
+    <h2>vakaliya feed</h2><br/> 
+   <div  className='actable'>
    
-       <table>
+       <table >
         <thead>
           <tr>
             <th id='srno'>srno </th>
@@ -51,7 +53,7 @@ const srno = [0]
        </>
       );
     })} </table>
-   </div>
+   </div></center>
    {/* <button onClick={loaddata} >load</button> */}
    </>
   )

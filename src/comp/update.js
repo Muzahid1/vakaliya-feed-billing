@@ -12,8 +12,8 @@ function Update() {
 
 
 
-  function getproduct() {
-    axios.post(`http://localhost:3001/product/${params.name}`).then((result) => {
+  async function getproduct() {
+   await axios.post(`http://localhost:3001/product/${params.name}`).then((result) => {
       setdata(result.data)
     })
 
@@ -27,8 +27,12 @@ function Update() {
   return (
     <>
       <Backbutton />
-
-
+      <center>
+      <div>
+        <h3> account information for {params.name}</h3>
+        
+      </div></center>
+      
 
     </>
   )

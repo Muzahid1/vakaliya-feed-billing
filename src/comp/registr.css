@@ -43,6 +43,20 @@
     border-bottom-right-radius: 15px;
     }
     }
+    .mycss {
+        margin-left: 5%;
+        
+        height: auto;
+        width: 90%;
+        box-sizing: border-box;
+        border: 2px solid black;
+        justify-content: center;
+        box-shadow: 2px 2px 2px rgb(148, 133, 133);
+        border-radius: 5px;
+    }
+    .container{
+        margin-top: 15px;
+    }
 
 
     

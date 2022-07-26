@@ -34,15 +34,7 @@
 
 }
 
-.mycss {
-    height: auto;
-    width: auto;
-    box-sizing: border-box;
-    border: 2px solid black;
 
-    box-shadow: 2px 2px 2px rgb(148, 133, 133);
-    border-radius: 5px;
-}
 
 @media only screen and (max-width:500px) {
     .list {

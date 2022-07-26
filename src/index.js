@@ -15,6 +15,8 @@ import Vrfylogin from './comp/Vrfylogin';
 import Purchase from './comp/Purchase';
 import Acleader from './comp/acleader';
 import Update from './comp/update';
+import Stoke from './comp/stoke';
+import About from './comp/about';
 function Apps (){
   return(
     <BrowserRouter>
@@ -27,9 +29,11 @@ function Apps (){
         <Route path='/purchase' element={<Purchase/>}></Route>
         <Route path="/acleader" element={<Acleader/>}></Route>
         <Route path='*' element={<Error/>} ></Route>
+        <Route path='/stoke' element={<Stoke/>} ></Route>
         </Route>
         <Route path='/register' element={<Register/>} ></Route>
         <Route path='/login' element={<Login/>} ></Route>
+        <Route path='/About' element={<About/>} ></Route>
        
         
       </Routes>

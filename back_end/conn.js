@@ -1,5 +1,3 @@
-
-
 const { dblClick } = require("@testing-library/user-event/dist/click");
 const { Db } = require("mongodb");
 const express = require("express");
@@ -10,11 +8,15 @@ const cors = require("cors");
 
 
 
+
 app.use(cors());
 app.use(express.json());
 app.listen(3001, () => {
   console.log("app runing at port 3001");
 })
+
+
+
 
 
 const mongoose = require("mongodb").MongoClient;
@@ -85,23 +87,18 @@ mongoose.connect(url, (err, Db) => {
 
 
   app.post("/login", async (req, res) => {
-    // res.send("hello");
-    //  const username = req.body.username;
-    //  const pass = req.body.pass;
-    // console.log(req.body)
+    
     const userdata = await database.collection("registration").findOne(req.body);
-    // console.log(userdata)
-    //.console.log(userdata.zip);
+    
     if (userdata) {
       console.log("sucess")
       res.setHeader("valid", "valid user")
       res.send({ userdata })
-      // res.status(400);
-      // res.send(userdata)
+      
 
     } else {
-      res.setHeader("invalid", "invalid user")
-      res.send("invalid user")
+      // res.setHeader("invalid", "invalid user")
+      res.send({status : "invalid"})
 
     }
   }
@@ -155,22 +152,44 @@ mongoose.connect(url, (err, Db) => {
 
   app.post("/iteam", (req, res) => {
     const { iteam } = req.body;
+    const iteam2 = {iteam : iteam}
+
     const mydata = {
       iteam,
       quentity: "0"
     }
+   const rs =  database.collection("food").findOne(iteam2, (err, result)=>{
+
+   if (result){
+    var iteam1 = result.iteam;
+    res.send({result})
+   }
+    
+    // console.log(iteam1)
     // database.collection("food").deleteMany({iteam : "abc"})
-    if (iteam !== "") {
-      database.collection("food").insertOne(mydata, (err, res) => {
+    if ( iteam !== iteam1){
+    if (iteam !== null) {
+     database.collection("food").insertOne(mydata, (err, res) => {
         if (err) throw err;
-        console.log("jnj")
+        // console.log("jnj")
+       
       })
-    };
+    }};
+  });
 
   })
 
-  app.get("/iteams", (req, res) => {
+  app.post("/iteams", (req, res) => {
+    const iteam = req.params.iteam;
     database.collection("food").find({}).toArray((err, result) => {
+      if (err) { console.log(err) }
+      else { res.send(result) }
+    })
+  });
+
+  app.post("/iteams/:iteam", (req, res) => {
+    const iteam = req.params.iteam;
+    database.collection("food").find({iteam : iteam}).toArray((err, result) => {
       if (err) { console.log(err) }
       else { res.send(result) }
     })
@@ -185,7 +204,15 @@ mongoose.connect(url, (err, Db) => {
     // console.log(name);
   })
 
-  //  database.collection("food").updateOne({iteam : "starter"}, {$set : {quentity : "5"}})
+app.put("/acleader", (req, res)=>{
+  const name = req.body.name;
+  
+  database.collection("acleader").insertOne({name })
+})
+
+
+  //  database.collection("invoice").deleteMany({name : "nfiobm"})
 
 });
 
+// module.exports = database;
