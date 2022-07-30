@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { useNavigate } from 'react-router-dom';
 
@@ -26,7 +26,7 @@ export default function Login() {
 
       })
     result = await result.json();
-    console.log(result);
+   
     console.log(result)
     if (result.userdata) {
       console.log("yes")
@@ -50,7 +50,7 @@ export default function Login() {
       <center>
         <div className="login">
          
-          <img className="image" src={require('../img/login.png')}  height={100} width={100}/><br/>
+          <img className="image" alt="" src={require('../img/login.png')}  height={100} width={100}/><br/>
           <label>inter mobile no</label> <br />
           <input  onChange={(e) => { setUsername(e.target.value) }} /><br />
            <label>inter email</label> <br />

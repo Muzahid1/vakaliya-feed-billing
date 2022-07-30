@@ -35,7 +35,7 @@ useEffect(()=>{
                 <tbody>
                 {stoke.map(stoke=>{
                         return(
-                    <tr>
+                    <tr key={Math.random()}>
                         <th>{srno[0]+=1}</th>
                         
                         <th>{stoke?.iteam}</th>

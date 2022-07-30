@@ -14,7 +14,7 @@ import Footer from './comp/footer';
 import Vrfylogin from './comp/Vrfylogin';
 import Purchase from './comp/Purchase';
 import Acleader from './comp/acleader';
-import Update from './comp/update';
+import Update from './comp/acinfo';
 import Stoke from './comp/stoke';
 import About from './comp/about';
 function Apps (){
@@ -31,9 +31,11 @@ function Apps (){
         <Route path='*' element={<Error/>} ></Route>
         <Route path='/stoke' element={<Stoke/>} ></Route>
         </Route>
-        <Route path='/register' element={<Register/>} ></Route>
-        <Route path='/login' element={<Login/>} ></Route>
         <Route path='/About' element={<About/>} ></Route>
+        <Route path='/register' element={<Register/>} ></Route>
+        
+        <Route path='/login' element={<Login/>} ></Route>
+        
        
         
       </Routes>
@@ -49,7 +51,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<Apps/>)
 
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+
+
+
 

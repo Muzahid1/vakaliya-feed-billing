@@ -4,6 +4,8 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 
+// const invoice1 = require("./acleader")
+
 
 
 
@@ -18,15 +20,17 @@ app.listen(3001, () => {
 
 
 
-
 const mongoose = require("mongodb").MongoClient;
-const url = "mongodb://localhost:27017/";
+const url = "mongodb://localhost:27017/vakaliya";
 mongoose.connect(url, (err, Db) => {
   if (err) {
     console.log("err");
   } else {
     console.log("connacted");
   }
+
+// app.get("/invoice", invoice1.invoice)
+
   const database = Db.db("vakaliya");
 
   app.post("/register", (req, res) => {
@@ -86,6 +90,7 @@ mongoose.connect(url, (err, Db) => {
   });
 
 
+
   app.post("/login", async (req, res) => {
     
     const userdata = await database.collection("registration").findOne(req.body);
@@ -133,6 +138,8 @@ mongoose.connect(url, (err, Db) => {
       })
     })
   })
+
+
   app.post("/invoice", (req, res) => {
     const { name, invoiceno, date, iteam, price, Quentity, total, shipping } = req.body;
     const mydata = {
@@ -144,6 +151,11 @@ mongoose.connect(url, (err, Db) => {
       date,
       shipping
     }
+    database.collection("food").findOne({iteam: iteam},(err, resu)=>{
+    var update = Number(resu.quentity) - Number(Quentity)
+    console.log(update);
+    database.collection("food").updateOne({iteam:iteam}, {$set :{quentity : update}})
+   })
     database.collection("invoice").insertOne(mydata, (err, res) => {
       if (err) throw err;
       console.log("invoice generated");
@@ -212,6 +224,10 @@ app.put("/acleader", (req, res)=>{
 
 
   //  database.collection("invoice").deleteMany({name : "nfiobm"})
+  // const stoke = database.collection("food").findOne({iteam: "phase 1"}, (err, resu)=>{
+  //   console.log(resu.quentity);
+  // })
+  
 
 });
 

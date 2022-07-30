@@ -14,16 +14,7 @@ function Purchase() {
     const [data2, setdata2] = useState([])
     const [value, setvalue] = useState()
 
-    const data4 = [{
-        name : "muzahid"
-    },
-    {
-      name : "aehmad"  
-    },
-    {
-        name : "kjhfvgnjksdhvsjkdvhbsjd,"
-    }
-]
+    
 
 function dbinsert (){
     axios.post(`http://localhost:3001/stoke/${value}`, {
@@ -91,11 +82,11 @@ console.log(data);
           <center><div  className='coint'>
             <label>invoice no <input onChange={(e)=>{setinvoice(e.target.value)}} /></label>
             <label> iteam</label><br/>
-            <select onChange={(e)=>{setvalue(e.target.value)}} >{data2.map(data1=>{
+            <select onChange={(e)=>{setvalue(e.target.value)}} >{data2.map((data1, index)=>{
                 return (
                 <>
 
-                <option>{data1.iteam}</option>
+                <option key={index}>{data1.iteam}</option>
                  
                     </>
                 )
@@ -105,7 +96,7 @@ console.log(data);
             <label>rate</label><br/>
             <input onChange={(e=>{setprice(e.target.value)})} /><br/>
             <label>total</label><br/>
-            <input value={price*quentity} />
+            <input readOnly value={price*quentity} />
             <button onClick={dbinsert}>submit</button>
            </div></center> 
       

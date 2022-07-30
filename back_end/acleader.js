@@ -1,42 +1,57 @@
 // const { dblClick } = require("@testing-library/user-event/dist/click");
-// const express = require("express");
+const express = require("express");
+
 // const { Router } = require("react-router-dom");
-// const route = express.Router();
+const route = express.Router();
 // const mongoose = require("mongoose")
+const muzahid = require("./model")
+
 
 // route.post("/", (req, res) => {
-//     console.log("post")
-
-// })
-
-// route.get("/", (req, res) => {
-//     res.send({ data: "data" })
-// })
-
-// route.put("/", (req, res) => {
-//     console.log("put")
-
-//     const { name } = req.body;
-
-//     const schema = new mongoose.Schema({
-//         name: {
-//             type: "String"
-//         }
+//     let schema = new schema({
+//      name : req.params.name
 //     })
-//     const data = ({
-//         name,
-//     })
-//     mongoose.model("acleader", schema)
-//     data.save((err, result) => {
+//     schema.save((err, sucess)=>{
 //         if (err) throw err;
-//         else { console.log("sud") }
+//         console.log("sucess")
 //     })
+   
+   
+
 // })
 
-// route.delete("/", (req, res) => {
-//     console.log("ddelet")
-// })
+// module.exports.invoice =  function (req, res){
+    //   let schema1 = new Schema({
+    //     name : req.params.name
+    //   })
+    route.get("/find",  (req, res)=>{
+    const muzahi = new muzahid();
+    // const food = new food()
+    muzahi.save({name:"muzahid"})
+//    const rs = muzahid.find({})
+//     res.send({rs})
+    
+     } )
+
+     route.get("/finds", (req, res)=>{
+       muzahid.find({}, (err, result)=>{
+        if (err){console.log(err)}
+        else{res.send(result)}
+        
+       })
+      
+     })
+    
+  
+// }
+
+// , (err, result)=>{
+
+//     if (err) {console.log(err)}
+//     else
+//    { res.send(result)}
+//   })
 
 
 
-// module.exports = route
+module.exports = route

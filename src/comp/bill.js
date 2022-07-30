@@ -1,27 +1,27 @@
-import { render } from "@testing-library/react";
+// import { render } from "@testing-library/react";
 import axios from "axios";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import ReactDOM from 'react-dom/client';
-import Home from "../home";
+import React, {  useEffect,  useMemo,  useState } from "react";
+// import ReactDOM from 'react-dom/client';
+// import Home from "../home";
 import Backbutton from "../Backbutton";
 import  { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 
 
 
-import { useNavigate } from "react-router-dom";
-import Invoice from "./Invoice";
-import e from "cors";
+// import { useNavigate } from "react-router-dom";
+// import Invoice from "./Invoice";
+// import e from "cors";
 const Contact = () => {
 
-  const [data, setData] = useState([{ name: "select" }]);
+  const [data, setData] = useState([{name : "select"}]);
   const [data1, setData1] = useState([]);
   const [data2, setData2] = useState([]);
-  const [Row, newRow] = useState(["1"]);
+ 
   const [iteam, setIteam] = useState("phase 1");
   const [price, setprice] = useState("1115");
   const [Quentity, setQuentity] = useState("1");
- const [name, setname] = useState("")
+//  const [name, setname] = useState("")
   const [shipping, setshipping] = useState("0")
   const [total, settotal] = useState(`${price*Quentity-shipping}`);
   const [dbdata, setdbdata] = useState();
@@ -45,6 +45,7 @@ const Contact = () => {
     useEffect(()=>{
     axios.get("http://localhost:3001/user").then((result) => {
       setData(result.data);
+      
     });
   },[])
   // }
@@ -128,7 +129,7 @@ const Contact = () => {
 //   var iteam1 = iteam == stoke[iteam].iteam
 //   console.log(iteam1.quentity)
 // });
-console.log(stoke[0]?.quentity)
+
 
   return (
 
@@ -137,10 +138,10 @@ console.log(stoke[0]?.quentity)
         <Backbutton />
         <center> <select onClick={app} onChange={(e) => setData1(e.target.value)}>{data.map((data,index) => {
           return (
-            <>
-
-              <option key={index}>{data.name}</option>
-            </>
+         
+ <>
+              <option >{data.name}</option>
+              </>
           )
         })}</select>
         </center>
