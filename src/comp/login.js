@@ -40,7 +40,7 @@ export default function Login() {
 
   }
 
-
+ 
 
   document.title = "vakaliya feed login";
 
@@ -49,9 +49,10 @@ export default function Login() {
     <>
       <center>
         <div className="login">
-
+         
+          <img className="image" src={require('../img/login.png')}  height={100} width={100}/><br/>
           <label>inter mobile no</label> <br />
-          <input onChange={(e) => { setUsername(e.target.value) }} /><br />
+          <input  onChange={(e) => { setUsername(e.target.value) }} /><br />
            <label>inter email</label> <br />
           <input onChange={(e) => { setPass(e.target.value) }} /> <br />
           <br/>

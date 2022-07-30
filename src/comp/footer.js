@@ -1,5 +1,7 @@
 import React from "react";
  export default function Footer () {
+
+  
     return (
         <>
         <footer style={{bottom: "20px"}} className="bg-dark text-center text-white">
@@ -16,8 +18,8 @@ import React from "react";
 
   
   <div className="text-center p-3" style={{backgroundcolor: "rgba(0, 0, 0, 0.2)"}}>
-    © 2020 Copyright:
-    <a className="text-white" href="https://mdbootstrap.com/">vakaliya feed</a>
+    © {  new Date().getMonth()}  {new Date().getFullYear()} Copyright :
+    <a className="text-white" href="https://www.instagram.com/mr.muzu_04/"> vakaliya feed</a>
   </div>
  
 </footer>

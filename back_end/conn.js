@@ -158,7 +158,7 @@ mongoose.connect(url, (err, Db) => {
       iteam,
       quentity: "0"
     }
-   const rs =  database.collection("food").findOne(iteam2, (err, result)=>{
+     database.collection("food").findOne(iteam2, (err, result)=>{
 
    if (result){
     var iteam1 = result.iteam;
