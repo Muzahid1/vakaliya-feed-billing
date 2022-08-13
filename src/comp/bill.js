@@ -1,10 +1,10 @@
 // import { render } from "@testing-library/react";
 import axios from "axios";
-import React, {  useEffect,  useMemo,  useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 // import ReactDOM from 'react-dom/client';
 // import Home from "../home";
 import Backbutton from "../Backbutton";
-import  { useRef } from 'react';
+import { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 
 
@@ -14,16 +14,16 @@ import { useReactToPrint } from 'react-to-print';
 // import e from "cors";
 const Contact = () => {
 
-  const [data, setData] = useState([{name : "select"}]);
+  const [data, setData] = useState([{ name: "select" }]);
   const [data1, setData1] = useState([]);
   const [data2, setData2] = useState([]);
- 
+
   const [iteam, setIteam] = useState("phase 1");
   const [price, setprice] = useState("1115");
   const [Quentity, setQuentity] = useState("1");
-//  const [name, setname] = useState("")
+  //  const [name, setname] = useState("")
   const [shipping, setshipping] = useState("0")
-  const [total, settotal] = useState(`${price*Quentity-shipping}`);
+  const [total, settotal] = useState(`${price * Quentity - shipping}`);
   const [dbdata, setdbdata] = useState();
   const [date, setDate] = useState(``);
   const [dbdata1, setdbdata1] = useState()
@@ -31,119 +31,118 @@ const Contact = () => {
 
 
   const componentRef = useRef();
-  const handlePrint =  useReactToPrint({
+  const handlePrint = useReactToPrint({
     content: () => componentRef.current,
-  
- 
-   
+
+
+
   }
   );
   // my new file
 
   //const history = useNavigate();
   // function user() {
-    useEffect(()=>{
+  useEffect(() => {
     axios.get("http://localhost:3001/user").then((result) => {
-      setData(result.data);
-      
+      setData([...data, result.data]);
+
     });
-  },[])
+  }, [])
   // }
-  useEffect(()=>{
-    axios.post(`http://localhost:3001/iteams/${iteam}`).then((result1)=>{
-      setstoke(  result1.data  )
+  useEffect(() => {
+    axios.post(`http://localhost:3001/iteams/${iteam}`).then((result1) => {
+      setstoke(result1.data)
     })
-    
+
   }, [])
 
   function app() {
     // console.log(data1);
-    
-   const apps = axios.post(`http://localhost:3001/suser/${data1}`).then((result1) => {
+
+    const apps = axios.post(`http://localhost:3001/suser/${data1}`).then((result1) => {
       setData2(result1.data)
-     
-      
+
+
     });
 
   };
-  
+
   // if (Quentity <= stoke[0]?.quentity){
-        
+
   // }else {alert(iteam + " is out of stoke")}
-   
-
-  function dbinsert1 (){
-    if (Quentity <= stoke[0].quentity){
-    {
-  
-    axios.post("http://localhost:3001/invoice", {
-    name : data2[0].name,
-    iteam,
-    price,
-    Quentity,
-    total,
-    date,
-    shipping
-  }).then(()=>{
-    setdbdata([dbdata, {
-      name : data2[0].name,  
-      iteam,
-      price,
-      Quentity,
-      total,
-      date,
-      shipping
-   } ])
-  })}
-
-}else{alert(iteam +" out of stoke")}
-  
-
-  axios.put("http://localhost:3001/acleader", {
-   name : "name"
-  }).then(()=>{
-    setdbdata1([dbdata1, {
-    name : data2[0].name
-  }])
-})
-}
 
 
+  function dbinsert1() {
+    if (Quentity <= stoke[0].quentity) {
+      {
 
-//   const printdiv = (parava) => {
-//     console.log("printing");
-//     //  var backup = document.getElementById("root").innerHTML;
-//     var divcontent = document.getElementById(parava).innerHTML;
-//     // document.body.innerHTML =  divcontent;
-//     window.print();
-//     // setIsprint("false");
-//     //  document.body.innerHTML = backup;
-// dbinsert()
-//   }
-  function handlePrint1 (){
+        axios.post("http://localhost:3001/invoice", {
+          name: data2[0].name,
+          iteam,
+          price,
+          Quentity,
+          total,
+          date,
+          shipping
+        }).then(() => {
+          setdbdata([dbdata, {
+            name: data2[0].name,
+            iteam,
+            price,
+            Quentity,
+            total,
+            date,
+            shipping
+          }])
+        })
+      }
+
+    } else { alert(iteam + " out of stoke") }
+
+
+    axios.put("http://localhost:3001/acleader", {
+      name: "name"
+    }).then(() => {
+      setdbdata1([dbdata1, {
+        name: data2[0].name
+      }])
+    })
+  }
+
+
+
+  //   const printdiv = (parava) => {
+  //     console.log("printing");
+  //     //  var backup = document.getElementById("root").innerHTML;
+  //     var divcontent = document.getElementById(parava).innerHTML;
+  //     // document.body.innerHTML =  divcontent;
+  //     window.print();
+  //     // setIsprint("false");
+  //     //  document.body.innerHTML = backup;
+  // dbinsert()
+  //   }
+  function handlePrint1() {
     handlePrint()
     dbinsert1()
   }
-  
-//  stoke.map(stoke=>{
-//   var iteam1 = iteam == stoke[iteam].iteam
-//   console.log(iteam1.quentity)
-// });
 
+console.log(data);
 
   return (
 
     <div id="root1">
       <>
         <Backbutton />
-        <center> <select onClick={app} onChange={(e) => setData1(e.target.value)}>{data.map((data,index) => {
-          return (
-         
- <>
-              <option >{data.name}</option>
+        <center> <select onClick={app} onChange={(e) => setData1(e.target.value)}>
+          <option >{data[0].name}</option>
+          {data[1]?.map((data, index) => {
+            return (
+              <>
+              {console.log(data)}
+                <option >{data?.name}</option>
               </>
-          )
-        })}</select>
+            )
+          })}</select>
         </center>
 
 
@@ -168,15 +167,15 @@ const Contact = () => {
 
                   <div className="col-xs-6">
                     <address> <strong>Billed To:</strong></address>
-                    
-                       
-                        
-                          <div><p  >{data2[0]?.name}</p> </div>
-                          {data2[0]?.businessarea} {data2[0]?.start} {data2[0]?.zip}<br />
-                          {data2[0]?.mobile}, {data2[0]?.email}
-                        
-                      
-                    
+
+
+
+                    <div><p  >{data2[0]?.name}</p> </div>
+                    {data2[0]?.businessarea} {data2[0]?.start} {data2[0]?.zip}<br />
+                    {data2[0]?.mobile}, {data2[0]?.email}
+
+
+
                   </div>
 
                 </div>
@@ -187,7 +186,7 @@ const Contact = () => {
                       <strong>Order Date:</strong>
                       <br />
 
-                      <input value={date} onChange={(e)=>{setDate(e.target.value)}} type="date"></input>
+                      <input value={date} onChange={(e) => { setDate(e.target.value) }} type="date"></input>
 
                       <br />
                       <br />

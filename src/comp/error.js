@@ -4,7 +4,7 @@ import Backbutton from "../Backbutton";
     return(
        <>
        <Backbutton/>
-     <center>  <h2>404</h2><br/>
+     <center>  <h1>404</h1><br/>
        <h3>page not found</h3></center>
        </>
     );
