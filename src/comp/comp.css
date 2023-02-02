@@ -119,8 +119,21 @@ table, th, td {
 .actable {
   height: auto;
   width: 70%;
+  text-align: center;
 }
-.actable table tr th1 {
+/* .actable table tr th1 {
  width: 2px;
+} */
+
+table, td, th {
+  border: 1px solid black;
 }
 
+table thead{
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td {
+  text-align: center;
+}

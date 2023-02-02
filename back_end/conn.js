@@ -3,6 +3,8 @@ const { Db } = require("mongodb");
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const Jwt = require('jsonwebtoken');
+const jwtKey = 'muzu';
 
 // const invoice1 = require("./acleader")
 
@@ -29,9 +31,11 @@ mongoose.connect(url, (err, Db) => {
     console.log("connacted");
   }
 
-// app.get("/invoice", invoice1.invoice)
+  // app.get("/invoice", invoice1.invoice)
 
   const database = Db.db("vakaliya");
+
+
 
   app.post("/register", (req, res) => {
 
@@ -61,6 +65,9 @@ mongoose.connect(url, (err, Db) => {
       }
     })
   });
+
+  
+ 
 
   app.get("/user", (err, res) => {
 
@@ -92,18 +99,20 @@ mongoose.connect(url, (err, Db) => {
 
 
   app.post("/login", async (req, res) => {
-    
+
     const userdata = await database.collection("registration").findOne(req.body);
-    
+
     if (userdata) {
-      console.log("sucess")
+      Jwt.sign({ userdata }, jwtKey, (err, token) => {
+        res.send({ userdata, auth: token })
+      })
       res.setHeader("valid", "valid user")
-      res.send({ userdata })
-      
+      // res.send({ userdata })
+
 
     } else {
       // res.setHeader("invalid", "invalid user")
-      res.send({status : "invalid"})
+      res.send({ status: "invalid" })
 
     }
   }
@@ -118,7 +127,7 @@ mongoose.connect(url, (err, Db) => {
     const { invoice, iteam, quentity, price } = req.body;
 
     database.collection("food").find(valuequery).toArray((err, results) => {
-      const upd = results[0].quentity;
+      const upd = results[0]?.quentity;
       console.log(upd);
 
       const quentity1 = Number(upd) + Number(quentity);
@@ -151,11 +160,11 @@ mongoose.connect(url, (err, Db) => {
       date,
       shipping
     }
-    database.collection("food").findOne({iteam: iteam},(err, resu)=>{
-    var update = Number(resu.quentity) - Number(Quentity)
-    console.log(update);
-    database.collection("food").updateOne({iteam:iteam}, {$set :{quentity : update}})
-   })
+    database.collection("food").findOne({ iteam: iteam }, (err, resu) => {
+      var update = Number(resu.quentity) - Number(Quentity)
+      console.log(update);
+      database.collection("food").updateOne({ iteam: iteam }, { $set: { quentity: update } })
+    })
     database.collection("invoice").insertOne(mydata, (err, res) => {
       if (err) throw err;
       console.log("invoice generated");
@@ -164,30 +173,31 @@ mongoose.connect(url, (err, Db) => {
 
   app.post("/iteam", (req, res) => {
     const { iteam } = req.body;
-    const iteam2 = {iteam : iteam}
+    const iteam2 = { iteam: iteam }
 
     const mydata = {
       iteam,
       quentity: "0"
     }
-     database.collection("food").findOne(iteam2, (err, result)=>{
+    database.collection("food").findOne(iteam2, (err, result) => {
 
-   if (result){
-    var iteam1 = result.iteam;
-    res.send({result})
-   }
-    
-    // console.log(iteam1)
-    // database.collection("food").deleteMany({iteam : "abc"})
-    if ( iteam !== iteam1){
-    if (iteam !== null) {
-     database.collection("food").insertOne(mydata, (err, res) => {
-        if (err) throw err;
-        // console.log("jnj")
-       
-      })
-    }};
-  });
+      if (result) {
+        var iteam1 = result.iteam;
+        res.send({ result })
+      }
+
+      // console.log(iteam1)
+      // database.collection("food").deleteMany({iteam : "abc"})
+      if (iteam !== iteam1) {
+        if (iteam !== null) {
+          database.collection("food").insertOne(mydata, (err, res) => {
+            if (err) throw err;
+            // console.log("jnj")
+
+          })
+        }
+      };
+    });
 
   })
 
@@ -201,7 +211,7 @@ mongoose.connect(url, (err, Db) => {
 
   app.post("/iteams/:iteam", (req, res) => {
     const iteam = req.params.iteam;
-    database.collection("food").find({iteam : iteam}).toArray((err, result) => {
+    database.collection("food").find({ iteam: iteam }).toArray((err, result) => {
       if (err) { console.log(err) }
       else { res.send(result) }
     })
@@ -216,18 +226,19 @@ mongoose.connect(url, (err, Db) => {
     // console.log(name);
   })
 
-app.put("/acleader", (req, res)=>{
-  const name = req.body.name;
-  
-  database.collection("acleader").insertOne({name })
-})
+  app.put("/acleader", (req, res) => {
+    const name = req.body.name;
+
+    database.collection("acleader").insertOne({ name })
+  });
+
 
 
   //  database.collection("invoice").deleteMany({name : "nfiobm"})
   // const stoke = database.collection("food").findOne({iteam: "phase 1"}, (err, resu)=>{
   //   console.log(resu.quentity);
   // })
-  
+
 
 });
 

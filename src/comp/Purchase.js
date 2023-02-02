@@ -16,8 +16,8 @@ function Purchase() {
 
     
 
-function dbinsert (){
-    axios.post(`http://localhost:3001/stoke/${value}`, {
+async function dbinsert (){
+   await axios.post(`http://localhost:3001/stoke/${value}`, {
         invoice : invoice,
         iteam : iteam,
         quentity : quentity,
@@ -30,6 +30,19 @@ function dbinsert (){
             price : price
     }])
     })
+   
+    myfunc()
+
+    
+}
+function myfunc (){
+    setiteam("")
+    setiteam1("")
+    setdata2("")
+    setvalue("")
+    setinvoice("")
+    setprice("")
+    alert("jhkj")
 }
 
 function addproduct(){

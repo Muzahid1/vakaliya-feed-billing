@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-
+import React, {Suspense, lazy, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 
@@ -8,7 +7,6 @@ export default function Login() {
   const history = useNavigate();
   const [mobile, setUsername] = useState("");
   const [email, setPass] = useState("");
-
 
 
   async function Handlelogin() {
@@ -28,11 +26,13 @@ export default function Login() {
     result = await result.json();
    
     console.log(result)
-    if (result.userdata) {
+    console.log(result.userdata.name);
+    if (result.auth) {
       console.log("yes")
       history("/")
       // console.log(JSON.stringify(result.userdata.name));
       sessionStorage.setItem('user', JSON.stringify(result.userdata));
+      sessionStorage.setItem('token', JSON.stringify(result.auth));
     } else {
       alert("please inter a valid user detail")
     }
@@ -47,6 +47,7 @@ export default function Login() {
 
   return (
     <>
+      <Suspense fallback={<div>please wait</div>} >
       <center>
         <div className="login">
          
@@ -56,10 +57,12 @@ export default function Login() {
            <label>inter email</label> <br />
           <input onChange={(e) => { setPass(e.target.value) }} /> <br />
           <br/>
-          <button  onClick={Handlelogin}>login</button>
+          <button  onClick={Handlelogin}> <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#pills-login" role="tab"
+      aria-controls="pills-login" aria-selected="true">Login</a></button>
 
         </div>
       </center>
+      </Suspense>
     </>
   )
 }

@@ -11,8 +11,11 @@ function Acleader() {
     useEffect(()=>{
       axios.get("http://localhost:3001/user").then((result) => {
         setData(result.data);
+        console.log(result.data);
       });
+      
     },[])
+    
   
    
     // for (var srno=1; srno<10; srno++){

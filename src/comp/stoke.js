@@ -8,12 +8,18 @@ const srno = [0];
 
 const [stoke, setstoke] = useState([])
 
+// useEffect(()=>{
+    
+//     console.log("hii");
+    
+// },[])
 useEffect(()=>{
     axios.post("http://localhost:3001/iteams").then((result)=>{
         setstoke(result.data);
+        console.log(result.data);
     })
-    
-})
+    // console.log();
+},[])
 
   return (
     <>

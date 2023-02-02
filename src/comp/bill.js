@@ -33,10 +33,7 @@ const Contact = () => {
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
-
-
-
-  }
+ }
   );
   // my new file
 
@@ -134,11 +131,11 @@ console.log(data);
       <>
         <Backbutton />
         <center> <select onClick={app} onChange={(e) => setData1(e.target.value)}>
-          <option >{data[0].name}</option>
-          {data[1]?.map((data, index) => {
+          <option >{data[0]?.name}</option>
+          {data[1]?.map((data) => {
             return (
               <>
-              {console.log(data)}
+             
                 <option >{data?.name}</option>
               </>
             )

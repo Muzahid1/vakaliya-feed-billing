@@ -19,18 +19,18 @@ function Update() {
 
   }
 
- useEffect(()=>{
-  axios.post(`http://localhost:3001/invoice`).then((result1)=>{
-    setuser(result1.data)
+//  useEffect(()=>{
+//   axios.post(`http://localhost:3001/invoice`).then((result1)=>{
+//     setuser(result1.data)
    
-  },)
- },[])
+//   },)
+//  },[])
  
   useEffect(() => {
     getproduct()
   }, [])
   // console.log(data)
-  console.log(user)
+  
 
   return (
     <>
